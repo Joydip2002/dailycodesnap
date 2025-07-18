@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide & Unhide Password</title>
+
+    <!-- css -->
+    <style>
+        body{
+            background-color: black;
+        }
+        .form-wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        input{
+            padding: 10px;
+        }
+        button{
+            padding: 6px;
+        }
+        .password-field{
+            position: relative;
+        }
+        .togglepassword{
+            position: absolute;
+            right: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+    <!-- css -->
+
+</head>
+<body>
+    
+
+    <!-- main -->
+    <div class="form-wrapper">
+        <form action="" class="form-container">
+            <label for="">Username</label>
+            <input type="text" class="username">
+
+            <label for="">Password</label>
+            <div class="password-field">
+                <input type="password" class="password">
+                <spam class="togglepassword">👁️</spam>
+            </div>
+
+            <button type="">Submit</button>
+        </form>
+    </div>
+    <!-- main -->
+
+
+
+    <!-- js -->
+    <script>
+        const togglepassword = document.querySelector('.togglepassword');
+        const password = document.querySelector('.password');
+
+        togglepassword.addEventListener('click',function(){
+            let type = password.getAttribute('type') === 'password'?'text':'password';
+            password.setAttribute("type",type);
+
+            togglepassword.textContent = type === 'password' ? '👁️' : '🙈';
+        })
+
+    </script>
+    <!-- js -->
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!-- Best ways for Center a Div -->
+<!-- i) Using Flexbox
+ii) Using Grid 
+iii) position relative & absolute
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Center A Div</title>
+
+    <!-- internal css -->
+     <style>
+        /* using flexbox */
+        /* .parent{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: black;
+        } */
+
+        /* using grid */
+        /* .parent{
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            background: black;
+        } */
+
+        .parent{
+            position: relative;
+            min-height: 100vh;
+            background: #000;
+        }
+        .child{
+            width: 100px;
+            height: 100px;
+            background: blue;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            top:50%;
+            left: 50%;
+        }
+     </style>
+    <!-- internal css -->
+
+</head>
+<body>
+    <div class="parent">
+        <div class="child">
+
+        </div>
+    </div>
+</body>
+</html>
