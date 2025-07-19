@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <!-- css -->
+     <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: black;
+            font-family: sans-serif;
+        }
+        .calculator{
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow:  0 4px 12px rgba(0,0,0,0.1);
+        }
+        .display{
+            background: #222;
+            color: #0f0;
+            font-size: 2rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: right;
+            height: 50px;
+        }
+        .buttons{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 0.5rem;
+        }
+        button{
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        button:hover{
+            background: #d0d0d0;
+        }
+        .operator{
+            background: #f9a825;
+        }
+        .operator:hover{
+            background: #f57f17;
+        }
+        .equal{
+            background: #43a047;
+        }
+        .equal:hover{
+            background: #2e7d32;
+        }
+        .clear{
+            background: #ef5350;
+        }
+        .clear:hover{
+            background: #c62828;
+        }
+     </style>
+    <!-- css -->
+
+</head>
+<body>
+    
+    <!-- main -->
+
+    <div class="calculator">
+        <div id="display" class="display">0</div>
+        <div class="buttons">
+            <button onclick="clearDisplay()" class="clear">C</button>
+            <button onclick="append('%')" class="operator">%</button>
+            <button onclick="append('/')" class="operator">/</button>
+            <button onclick="append('*')" class="operator">X</button>
+
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button onclick="append('-')" class="operator">-</button>
+
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button onclick="append('+')" class="operator">+</button>
+
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button onclick="calculate()" class="equal">=</button>
+
+            <button onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+
+        </div>
+    </div>
+
+    <!-- main -->
+
+
+
+    <!-- js -->
+    <script>
+        const display = document.getElementById('display');
+
+        function append(value){
+            if(display.innerText === '0'){
+                display.innerText = value;
+            }else{
+                display.innerText += value;
+            }
+        }
+
+        function clearDisplay(){
+            display.innerText = '0';
+        }
+
+        function calculate(){
+            try{
+                display.innerText = eval(display.innerText.replace(/x/g, '*'));
+            }catch(e){
+                display.innerText = 'Error';
+            }
+        }
+    </script>
+    <!-- js -->
+</body>
+</html>
