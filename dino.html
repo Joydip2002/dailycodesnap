@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Dino Game</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #f4f4f4;
+      font-family: sans-serif;
+    }
+    .game {
+      width: 600px;
+      height: 200px;
+      border: 2px solid #333;
+      margin: 50px auto;
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+    }
+    .dino {
+      width: 40px;
+      height: 40px;
+      background: #00bcd4;
+      position: absolute;
+      bottom: 0;
+      left: 50px;
+    }
+    .cactus {
+      width: 20px;
+      height: 40px;
+      background: #4caf50;
+      position: absolute;
+      bottom: 0;
+      left: 600px;
+      animation: moveCactus 2s linear infinite;
+    }
+    @keyframes moveCactus {
+      0% { left: 600px; }
+      100% { left: -20px; }
+    }
+    .jump {
+      animation: jump 0.5s ease-out;
+    }
+    @keyframes jump {
+      0% { bottom: 0; }
+      50% { bottom: 100px; }
+      100% { bottom: 0; }
+    }
+    .game-over {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 24px;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="game">
+  <div class="dino" id="dino"></div>
+  <div class="cactus" id="cactus"></div>
+</div>
+<div class="game-over" id="gameOver" style="display: none;">Game Over!</div>
+
+<script>
+  const dino = document.getElementById("dino");
+  const cactus = document.getElementById("cactus");
+  const gameOverText = document.getElementById("gameOver");
+
+  document.addEventListener("keydown", function (e) {
+    if (e.code === "Space") {
+      if (!dino.classList.contains("jump")) {
+        dino.classList.add("jump");
+        setTimeout(() => {
+          dino.classList.remove("jump");
+        }, 500);
+      }
+    }
+  });
+
+  setInterval(() => {
+    const dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("bottom"));
+    const cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("left"));
+
+    if (cactusLeft > 50 && cactusLeft < 90 && dinoTop < 40) {
+      cactus.style.animation = "none";
+      cactus.style.left = `${cactusLeft}px`;
+      gameOverText.style.display = "block";
+    }
+  }, 10);
+</script>
+
+</body>
+</html>
