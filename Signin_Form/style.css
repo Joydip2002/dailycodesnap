@@ -1,0 +1,190 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    background: #ddd;
+    min-height: 100vh;
+}
+.main-container{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+}
+.left-container{
+    margin: 80px 50px;
+}
+.left-container form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.left-container form input{
+    padding: 10px;
+}
+.right-container{
+    background-color: #28c38d;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    color: #fff;
+    padding: 10px;
+    justify-content: center;
+}
+h4{
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+p{
+    font-size: 14px;
+}
+.right-container .signup-label{
+    font-size: 12px;
+    background-color: #7fcb9a;
+    border-radius: 25px;
+    padding: 10px;
+}
+input{
+    border-radius: 5px;
+    border:  1px solid #ddd;
+    outline: none;
+    width: 18rem;
+}
+button{
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    background-color: #28c38d;
+    color: #fff;
+    font-size: 15px;
+}
+.innner-right-context{
+    display: grid;
+    place-items: center;
+}
+.signin-link{
+    cursor: pointer;
+    color: rgba(0, 105, 192, 0.694);
+}
+ .social-login {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+.social-icon {
+    font-size: 20px;
+    color: #fff;
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.social-icon.google {
+    background-color: #db4437;
+}
+.social-icon.facebook {
+    background-color: #4267B2;
+}
+.social-icon.linkedin {
+    background-color: #0A66C2;
+}
+.social-icon:hover {
+    opacity: 0.8;
+}
+@media only screen and (max-width: 796px) {
+  .right-container {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
