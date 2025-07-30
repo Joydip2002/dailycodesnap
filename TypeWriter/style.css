@@ -1,0 +1,24 @@
+body{
+    background-color: #000;
+    color: #0f0;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 24px;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.typewriter::after{
+    content: '|';
+    animation: blink 0.7s step-end infinite;
+    margin-left: 5px;
+}
+@keyframes blink {
+    50%{
+        opacity: 0;
+    }
+}

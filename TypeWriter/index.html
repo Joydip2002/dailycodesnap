@@ -1,38 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Optimized Typewriter</title>
-  <style>
-    body {
-      background: #111;
-      color: #0f0;
-      font-family: monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-size: 24px;
-    }
-
-    .typewriter::after {
-      content: '|';
-      animation: blink 0.7s step-end infinite;
-      margin-left: 5px;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewriter</title>
+    <style>
+        body{
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 24px;
+        }
+        .wrapper{
+            display: flex;
+            flex-direction: column;
+        }
+        .typewriter::after{
+            content: '|';
+            animation: blink 0.7s step-end infinite;
+            margin-left: 5px;
+        }
+        @keyframes blink {
+            50%{
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="typewriter" id="typewriter"></div>
+    <div class="wrapper">
+        <div>
+            <h4>Hello, Subscriber 👋🏽</h4>
+        </div>
+        <div class="typewriter" id="typewriter">
+            <!-- load data by JS -->
+            <!-- initially i added some -->
+        </div>
+    </div>
 
-  <script>
+    <!-- now add js -->
+     <script>
     const sentences = [
       "I am a Software Engineer.",
-      "Level up your coding skills — hit that subscribe button!",
+      "Level up your coding skills",
       "Subscribe and like DailyCodeSnap!"
     ];
 
@@ -73,6 +87,6 @@
     }
 
     runTypewriter();
-  </script>
+     </script>
 </body>
 </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Optimized Typewriter</title>
+  <style>
+    body {
+      background: #111;
+      color: #0f0;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 24px;
+    }
+    .wrapper{
+      display: flex;
+      flex-direction: column;
+    }
+    .typewriter::after {
+      content: '|';
+      animation: blink 0.7s step-end infinite;
+      margin-left: 5px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div>
+      <h4>Hello Subscriber, 👋🏽</h4>
+    </div>
+
+    <div class="typewriter" id="typewriter"></div>
+  </div>
+
+  <script>
+    const sentences = [
+      "I am a Software Engineer.",
+      "Level up your coding skills",
+      "Subscribe and like DailyCodeSnap!"
+    ];
+
+    const el = document.getElementById("typewriter");
+    const typeSpeed = 100;
+    const deleteSpeed = 50;
+    const pauseAfterType = 1500;
+
+    let sentenceIndex = 0;
+    let charIndex = 0;
+    let isTyping = true;
+
+    function runTypewriter() {
+      const currentText = sentences[sentenceIndex];
+
+      if (isTyping) {
+        el.textContent = currentText.slice(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentText.length) {
+          isTyping = false;
+          setTimeout(runTypewriter, pauseAfterType);
+        } else {
+          setTimeout(runTypewriter, typeSpeed);
+        }
+      } else {
+        el.textContent = currentText.slice(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          isTyping = true;
+          sentenceIndex = (sentenceIndex + 1) % sentences.length;
+          setTimeout(runTypewriter, 300);
+        } else {
+          setTimeout(runTypewriter, deleteSpeed);
+        }
+      }
+    }
+
+    runTypewriter();
+  </script>
+</body>
+</html>

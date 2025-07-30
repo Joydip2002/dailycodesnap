@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notification Popup</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f0f0;
+    }
+
+    #popup-toggle {
+      display: none;
+    }
+
+    .notification-label {
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .notification-label:hover {
+      background: #0056b3;
+    }
+
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ffffff;
+      color: #333;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    #popup-toggle:checked ~ .popup {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .popup::before {
+      content: "🔔 ";
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="popup-toggle">
+  <label for="popup-toggle" class="notification-label">Show Notification</label>
+
+  <div class="popup">
+    This is a CSS-only notification!
+  </div>
+
+</body>
+</html>
