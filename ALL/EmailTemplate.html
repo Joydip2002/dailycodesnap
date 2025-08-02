@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Email Template</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        
+        /* Email container */
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* Header with image */
+        .email-header {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .company-name {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+        
+        .company-tagline {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* Email body */
+        .email-body {
+            padding: 40px 30px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .content {
+            margin-bottom: 25px;
+        }
+        
+        .content p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: transform 0.2s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .signature {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .signature-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .signature-title {
+            color: #667eea;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.4;
+        }
+        
+        /* Footer */
+        .email-footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #34495e;
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            line-height: 40px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #667eea;
+        }
+        
+        .footer-text {
+            font-size: 12px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .email-body {
+                padding: 30px 20px;
+            }
+            
+            .company-name {
+                font-size: 24px;
+            }
+            
+            .email-footer {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header Section -->
+        <div class="email-header">
+            <div class="header-overlay"></div>
+            <div class="header-content">
+                <div class="company-logo">YC</div>
+                <h1 class="company-name">Your Company</h1>
+                <p class="company-tagline">Excellence in Every Detail</p>
+            </div>
+        </div>
+        
+        <!-- Email Body -->
+        <div class="email-body">
+            <div class="greeting">
+                Dear [Recipient Name],
+            </div>
+            
+            <div class="content">
+                <p>We hope this email finds you well. We're excited to share some important updates and opportunities with you.</p>
+                
+                <p>Our team has been working diligently to bring you the best possible service, and we're thrilled to announce several new features that will enhance your experience with us.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Special Announcement:</strong> We're launching our new premium service package with exclusive benefits designed specifically for valued clients like yourself.</p>
+                </div>
+                
+                <p>We would love to schedule a brief call to discuss how these new offerings can benefit your business goals. Our team is ready to provide personalized solutions tailored to your needs.</p>
+                
+                <a href="#" class="cta-button">Schedule a Call</a>
+                
+                <p>Thank you for your continued trust in our services. We look forward to continuing our successful partnership.</p>
+            </div>
+            
+            <div class="signature">
+                <div class="signature-name">John Smith</div>
+                <div class="signature-title">Senior Account Manager</div>
+                <div class="contact-info">
+                    Phone: (555) 123-4567<br>
+                    Email: john.smith@yourcompany.com<br>
+                    Direct Line: (555) 123-4568
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Section -->
+        <div class="email-footer">
+            <div class="footer-content">
+                <p><strong>Your Company Name</strong></p>
+                <p>123 Business Street, Suite 100<br>
+                   City, State 12345</p>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">t</a>
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">@</a>
+            </div>
+            
+            <div class="footer-text">
+                <p>This email was sent to [recipient@email.com]. If you no longer wish to receive these emails, you can <a href="#" style="color: #667eea;">unsubscribe here</a>.</p>
+                <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

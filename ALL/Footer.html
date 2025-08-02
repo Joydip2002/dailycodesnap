@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professional Web Layout</title>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Add some content to push footer down */
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .hero-text {
+      text-align: center;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.5s forwards;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.7s forwards;
+    }
+
+    footer {
+      background: #f9f9f9;
+      padding: 3rem 2rem 1rem;
+      overflow: hidden;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    .footer-col {
+      flex: 1 1 250px;
+      transform: translateY(30px);
+      animation: slideUp 0.6s ease forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    .footer-col:nth-child(2) { animation-delay: 0.4s; }
+    .footer-col:nth-child(3) { animation-delay: 0.5s; }
+    .footer-col:nth-child(4) { animation-delay: 0.6s; }
+
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Logo placeholder styling */
+    .footer-logo-placeholder {
+      width: 160px;
+      height: 50px;
+      background: linear-gradient(135deg, #3f51b5, #667eea);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 8px rgba(63, 81, 181, 0.3);
+    }
+
+    .footer-col h4 {
+      color: #3f51b5;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: #555;
+      display: inline-block;
+      position: relative;
+      transition: color 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .footer-col a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #3f51b5;
+      transition: width 0.3s ease;
+    }
+
+    .footer-col a:hover {
+      /* color: #3f51b5; */
+    }
+
+    .footer-col a:hover::after {
+      width: 100%;
+    }
+
+    .footer-col p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* === SOCIAL CARD NEON STYLE === */
+    .social-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .social-card {
+      padding: 0.7rem 1rem;
+      background: #fff;
+      border: 2px solid #3f51b5;
+      border-radius: 10px;
+      color: #3f51b5;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      font-size: 0.9rem;
+    }
+
+    .social-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .social-card:hover::before {
+      left: 100%;
+    }
+
+    .social-card:hover {
+      color: #fff;
+      background: #3f51b5;
+      box-shadow: 0 0 20px rgba(63, 81, 181, 0.5), 0 0 40px rgba(63, 81, 181, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .social-card i {
+      transition: transform 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .social-card:hover i {
+      transform: scale(1.2);
+      color: #fff;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-col {
+        flex: 1 1 auto;
+      }
+      
+      .social-buttons {
+        align-items: center;
+      }
+      
+      .social-card {
+        width: fit-content;
+      }
+      
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-text p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Content Section -->
+  <div class="main-content">
+    <div class="hero-text">
+      <h1>Professional Web Solutions</h1>
+      <p>Creating modern, scalable, and beautiful websites</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+
+      <!-- Logo & About -->
+      <div class="footer-col">
+        <div class="footer-logo-placeholder">DevBrand</div>
+        <p>We create modern, scalable, and beautiful web solutions tailored to your business goals.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#case-studies">Case Studies</a></li>
+          <li><a href="#help">Help Center</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Social -->
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-buttons">
+          <a href="https://jm-portfolio23.netlify.app" class="social-card" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-globe"></i> Website
+          </a>
+          <a href="#" class="social-card">
+            <i class="fab fa-twitter"></i> Twitter
+          </a>
+          <a href="#" class="social-card">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="#" class="social-card">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+          <a href="https://www.youtube.com/@dailycodesnap" class="social-card" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-youtube"></i> YouTube
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 DevBrand. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
