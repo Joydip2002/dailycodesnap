@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form with Dark Mode</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="darknightmode.css">
+</head>
+
+<body>
+
+    <button class="toggle-btn" onclick="toggleMode()" id="modeIcon">🌙</button>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password">
+        </div>
+        <button class="login-btn">Login</button>
+    </div>
+
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById("modeIcon");
+            body.classList.toggle("dark-mode");
+
+            icon.textContent = body.classList.contains("dark-mode") ? "🌞" : "🌙";
+        }
+    </script>
+
+</body>
+
+</html>
