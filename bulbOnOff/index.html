@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangular Toggle Button</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bulb"></div>
+
+    <div class="toggle" id="toggleBtn">
+        <span>OFF</span>
+        <span>ON</span>
+        <div class="indicator"></div>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('toggleBtn');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('on');
+            document.body.classList.toggle('on');
+        });
+    </script>
+</body>
+
+</html>
