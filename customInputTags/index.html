@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Tags Input</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h2>Multiple Tags Input</h2>
+    <div class="tags-input" id="tagsInput">
+        <input type="text" placeholder="Type and press Enter...">
+    </div>
+
+    <script>
+        const tagsInput = document.getElementById("tagsInput");
+        const input = tagsInput.querySelector("input");
+
+        function createTag(text) {
+            const tag = document.createElement("span");
+            tag.className = "tag";
+            tag.innerHTML = `${text} <button>&times;</button>`;
+            tag.querySelector("button").addEventListener("click", () => tag.remove());
+            tagsInput.insertBefore(tag, input);
+        }
+
+        input.addEventListener("keydown", (e) => {
+            if ((e.key === "Enter" || e.key === ",") && input.value.trim() !== "") {
+                e.preventDefault();
+                createTag(input.value.trim());
+                input.value = "";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
