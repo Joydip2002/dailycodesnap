@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy to Clipboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Copy to Clipboard Demo</h1>
+        <div class="text-to-copy" id="textToCopy">
+            This text will be copied to your clipboard.
+        </div>
+
+        <button class="copy-btn" id="copyBtn"
+onclick="navigator.clipboard.writeText(document.getElementById('textToCopy').textContent).then(()=>{this.innerHTML='✓ Copied!';this.classList.add('copied');setTimeout(()=>{this.innerHTML='📋 Copy Text';this.classList.remove('copied')},2000)})">
+            📋 Copy Text
+        </button>
+        
+    </div>
+</body>
+
+</html>
