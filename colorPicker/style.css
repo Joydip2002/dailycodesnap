@@ -1,0 +1,108 @@
+body {
+    display:flex; justify-content:center; align-items:center; height:100vh;
+    background:linear-gradient(135deg, #0f0f0f, #1c1c1c);
+    font-family:'Segoe UI', sans-serif;
+}
+.picker {
+    background:#222;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,.6), 0 0 15px rgba(108,140,255,.3);
+    text-align:center;
+    transition:transform .3s;
+}
+.picker:hover {
+    transform:translateY(-5px);
+    box-shadow:0 14px 30px rgba(0,0,0,.7), 0 0 20px rgba(108,140,255,.5);
+}
+input[type=color] {
+    width:100px; height:100px;
+    border:none; cursor:pointer;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.5);
+    transition:transform .2s, box-shadow .3s;
+}
+input[type=color]:hover {
+    transform:scale(1.05);
+    box-shadow:0 6px 18px rgba(0,0,0,.7);
+}
+p {
+    margin:16px 0;
+    color:#fff;
+    font-weight:bold;
+    font-size:1.2rem;
+    letter-spacing:1px;
+    text-shadow:0 0 8px rgba(255,255,255,.3);
+}
+button {
+    padding:10px 18px;
+    border:none; border-radius:8px;
+    background:linear-gradient(135deg, #6c8cff, #4a66d3);
+    color:#fff;
+    font-weight:bold;
+    font-size:1rem;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    box-shadow:0 6px 15px rgba(0,0,0,.5);
+}
+button:hover {
+    background:linear-gradient(135deg, #7b99ff, #5a75e6);
+    box-shadow:0 8px 20px rgba(0,0,0,.6), 0 0 10px rgba(108,140,255,.6);
+    transform:translateY(-2px);
+}
+button:active {
+    transform:scale(0.95);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

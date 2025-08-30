@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Color Picker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="picker">
+        <input type="color" id="c" value="#6c8cff">
+        <p id="code">#6c8cff</p>
+        <button id="btn" onclick="copyColor()">Copy</button>
+    </div>
+
+    <script>
+        const color = document.getElementById("c");
+        const code = document.getElementById("code");
+        const btn = document.getElementById("btn");
+
+        color.addEventListener("input", () => code.textContent = color.value);
+
+        function copyColor() {
+            navigator.clipboard.writeText(code.textContent);
+            btn.textContent = "Copied!";
+            btn.style.background = "linear-gradient(135deg, #28a745, #1d7a32)";
+            setTimeout(() => {
+                btn.textContent = "Copy";
+                btn.style.background = "linear-gradient(135deg, #6c8cff, #4a66d3)";
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
