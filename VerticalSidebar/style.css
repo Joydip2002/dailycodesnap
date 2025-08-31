@@ -1,0 +1,194 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    height: 100vh;
+    background: #f4f6f9;
+}
+
+.sidebar{
+    background: #111827;
+    color: #fff;
+    width: 240px;
+    transition: width .28s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.collasped{
+    width: 70px;
+}
+
+.toggle-btn{
+    background: #1f2937;
+    cursor: pointer;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 20px;
+}
+
+.sidebar.collasped .toggle-btn{
+    justify-content: center;
+}
+
+.menu-top{
+    flex: 1;
+}
+
+.menu-bottom{
+    margin-top: auto;
+}
+
+.sidebar ul{
+    list-style: none;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.sidebar ul li{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background .18s;
+    padding:.18s;
+}
+.sidebar ul li:hover{
+    background: #374151;
+}
+.sidebar ul li i{
+    font-size: 20px;
+    line-height: 1;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+}
+.sidebar ul li span{
+    white-space: nowrap;
+    transition: opacity .18s;
+    transform: .18s;
+}
+.sidebar.collasped ul li{
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 0;
+}
+.sidebar.collasped ul li span{
+    display: none;
+}
+.main h1{
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+.main{
+    flex: 1;
+    margin-top: 20px;
+    padding: 20px;
+    overflow: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
