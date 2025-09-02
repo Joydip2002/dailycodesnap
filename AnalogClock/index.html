@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="clock-container">
+        <div class="clock-face">
+            <!-- Hour markers -->
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(0deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(30deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(60deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(90deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(120deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(150deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(180deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(210deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(240deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(270deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(300deg);"></div>
+            <div class="hour-marker" style="transform: translateX(-50%) rotate(330deg);"></div>
+
+            <!-- Numbers -->
+            <div class="number">12</div>
+            <div class="number">1</div>
+            <div class="number">2</div>
+            <div class="number">3</div>
+            <div class="number">4</div>
+            <div class="number">5</div>
+            <div class="number">6</div>
+            <div class="number">7</div>
+            <div class="number">8</div>
+            <div class="number">9</div>
+            <div class="number">10</div>
+            <div class="number">11</div>
+
+            <!-- Clock hands -->
+            <div class="hand hour-hand" id="hourHand"></div>
+            <div class="hand minute-hand" id="minuteHand"></div>
+            <div class="hand second-hand" id="secondHand"></div>
+
+            <!-- Center dot -->
+            <div class="center-dot"></div>
+
+            <!-- Digital time display -->
+            <div class="digital-time" id="digitalTime"></div>
+
+            <!-- Date display -->
+            <div class="date-display" id="dateDisplay"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            // Get time values
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            // Calculate angles
+            const hourAngle = (hours * 30) + (minutes * 0.5);
+            const minuteAngle = minutes * 6;
+            const secondAngle = seconds * 6;
+            
+            // Apply rotations
+            document.getElementById('hourHand').style.transform = `rotate(${hourAngle}deg)`;
+            document.getElementById('minuteHand').style.transform = `rotate(${minuteAngle}deg)`;
+            document.getElementById('secondHand').style.transform = `rotate(${secondAngle}deg)`;
+            
+            // Update digital time
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('digitalTime').textContent = timeString;
+            
+            // Update date
+            const dateString = now.toLocaleDateString('en-US', { 
+                weekday: 'short', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+            document.getElementById('dateDisplay').textContent = dateString;
+        }
+        
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>

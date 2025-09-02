@@ -1,0 +1,370 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.clock-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, #ffffff 0%, #f0f0f0 100%);
+    border-radius: 50%;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 -5px 10px rgba(0, 0, 0, 0.1),
+        inset 0 5px 10px rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clock-face {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.hour-marker {
+    position: absolute;
+    width: 4px;
+    height: 25px;
+    background: #333;
+    left: 50%;
+    top: 10px;
+    transform-origin: 50% 140px;
+    border-radius: 2px;
+}
+.hour-marker:nth-child(3n) {
+    width: 6px;
+    height: 30px;
+    top: 5px;
+    background: #000;
+}
+.number {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.number:nth-child(1) { top: 25px; left: 50%; } /* 12 */
+.number:nth-child(2) { top: 45px; right: 45px; } /* 1 */
+.number:nth-child(3) { top: 75px; right: 25px; } /* 2 */
+.number:nth-child(4) { top: 50%; right: 15px; } /* 3 */
+.number:nth-child(5) { bottom: 75px; right: 25px; } /* 4 */
+.number:nth-child(6) { bottom: 45px; right: 45px; } /* 5 */
+.number:nth-child(7) { bottom: 25px; left: 50%; } /* 6 */
+.number:nth-child(8) { bottom: 45px; left: 45px; } /* 7 */
+.number:nth-child(9) { bottom: 75px; left: 25px; } /* 8 */
+.number:nth-child(10) { top: 50%; left: 15px; } /* 9 */
+.number:nth-child(11) { top: 75px; left: 25px; } /* 10 */
+.number:nth-child(12) { top: 45px; left: 45px; } /* 11 */
+.hand {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform-origin: 50% 100%;
+    border-radius: 10px 10px 0 0;
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+.hour-hand {
+    width: 6px;
+    height: 80px;
+    background: linear-gradient(to top, #333, #666);
+    margin-left: -3px;
+    z-index: 3;
+}
+.minute-hand {
+    width: 4px;
+    height: 110px;
+    background: linear-gradient(to top, #444, #777);
+    margin-left: -2px;
+    z-index: 2;
+}
+.second-hand {
+    width: 2px;
+    height: 120px;
+    background: linear-gradient(to top, #ff4444, #ff6666);
+    margin-left: -1px;
+    z-index: 4;
+    transition: transform 0.1s ease-out;
+}
+.center-dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle, #333 0%, #666 100%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.digital-time {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #00ff00;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+.date-display {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.clock-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: conic-gradient(from 0deg, #667eea, #764ba2, #f093fb, #667eea);
+    border-radius: 50%;
+    z-index: -1;
+    animation: rotate 10s linear infinite;
+    opacity: 0.7;
+}
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@media (max-width: 480px) {
+    .clock-container {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .clock-face {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .hour-hand {
+        height: 60px;
+    }
+    
+    .minute-hand {
+        height: 85px;
+    }
+    
+    .second-hand {
+        height: 95px;
+    }
+    
+    .number {
+        font-size: 18px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
