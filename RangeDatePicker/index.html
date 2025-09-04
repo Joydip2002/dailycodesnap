@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Beautiful Date Range Picker</title>
+    <!-- Flatpickr CSS (Material Blue theme) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Pick a Date Range</h2>
+      <input id="daterange" placeholder="Select date range" readonly />
+    </div>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      flatpickr("#daterange", {
+        mode: "range",
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        animate: true,
+      });
+    </script>
+  </body>
+</html>
