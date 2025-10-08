@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mouse Trail Animation</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div style="padding: 20px;">
+        <h1 class="text-color">Welcome to Dailycodesnap</h1>
+        <p class="text-color">Mouse Trail Animation using JavaScript</p>
+    </div>
+
+    <script>
+      document.addEventListener("mousemove", (e) => {
+        const trail = document.createElement("div");
+        trail.classList.add("trail");
+        document.body.appendChild(trail);
+
+        trail.style.left = e.pageX + "px";
+        trail.style.top = e.pageY + "px";
+
+        setTimeout(() => {
+          trail.remove();
+        }, 600);
+      });
+    </script>
+  </body>
+</html>
