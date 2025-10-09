@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h2>Password Strength Checker</h2>
+    <input type="password" id="password" placeholder="Enter password" />
+    <div class="strength-bar">
+      <div class="strength-bar-fill" id="strength-fill"></div>
+    </div>
+    <div class="strength-text" id="strength-text">Strength:</div>
+
+    <script>
+      const passwordInput = document.getElementById("password");
+      const strengthFill = document.getElementById("strength-fill");
+      const strengthText = document.getElementById("strength-text");
+
+      passwordInput.addEventListener("input", () => {
+        const val = passwordInput.value;
+        let strength = 0;
+
+        if (val.length >= 6) strength += 1;
+        if (/[A-Z]/.test(val)) strength += 1;
+        if (/[0-9]/.test(val)) strength += 1;
+        if (/[\W]/.test(val)) strength += 1;
+        if (val.length >= 12) strength += 1;
+
+        switch (strength) {
+          case 0:
+            strengthFill.style.width = "0%";
+            strengthFill.style.background = "#333";
+            strengthText.textContent = "Strength: Very Weak";
+            break;
+          case 1:
+            strengthFill.style.width = "20%";
+            strengthFill.style.background = "#ff4d4d";
+            strengthText.textContent = "Strength: Weak";
+            break;
+          case 2:
+            strengthFill.style.width = "40%";
+            strengthFill.style.background = "#ff944d";
+            strengthText.textContent = "Strength: Medium";
+            break;
+          case 3:
+            strengthFill.style.width = "60%";
+            strengthFill.style.background = "#ffd24d";
+            strengthText.textContent = "Strength: Strong";
+            break;
+          case 4:
+            strengthFill.style.width = "80%";
+            strengthFill.style.background = "#b3ff4d";
+            strengthText.textContent = "Strength: Very Strong";
+            break;
+          case 5:
+            strengthFill.style.width = "100%";
+            strengthFill.style.background = "#4dff88";
+            strengthText.textContent = "Strength: Excellent";
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>
