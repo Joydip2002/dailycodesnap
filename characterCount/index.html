@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Count Box</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h3>Character Counter</h3>
+        <textarea id="message" name="" id="" maxlength="100" placeholder="Enter you message"></textarea>
+        <div class="counter">
+            <p>
+                <span id="used">
+                    0
+                </span>
+                /
+                <span id="limit">
+                    100
+                </span>
+            </p>
+            <p id="status">
+                Keep typing...
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const textarea = document.getElementById("message");
+        const used = document.getElementById("used");
+        const limit = document.getElementById("limit");
+        const status = document.getElementById("status");
+
+        textarea.addEventListener("input",()=>{
+            const length = textarea.value.length;
+            used.textContent = length;
+
+            if(length > 80){
+                status.textContent = "Almost there!";
+                status.classList.remove("warning");
+            }
+            if(length > 95){
+                status.textContent = "Limit nearly reached!";
+                status.classList.add("warning");
+            }
+            if(length == 100){
+                status.textContent = "Limit reached!";
+            }
+
+        })
+    </script>
+</body>
+</html>
