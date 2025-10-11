@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Das & Das Diagnostic Center</title>
+    <style>
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: white;
+        }
+        
+       
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .content {
+            min-height: 220mm;
+        }
+        
+        .instructions {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <h1>Das & Das Diagnostic Center</h1>
+        </div>
+        
+        <div class="content">
+            <!-- Blank content area -->
+        </div>
+    </div>
+    
+    <div class="instructions no-print">
+        <button onclick="window.print()" style="background: #2c3e50; color: white; padding: 12px 30px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Save as PDF
+        </button>
+        <p style="margin-top: 10px; font-size: 14px;">Click the button above, then select "Save as PDF" as the destination</p>
+    </div>
+</body>
+</html>
