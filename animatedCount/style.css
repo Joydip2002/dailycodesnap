@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+.counter-container {
+    display: flex;
+    gap: 3rem;
+    text-align: center;
+}
+
+.counter {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.label {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
