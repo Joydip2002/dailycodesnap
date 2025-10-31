@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Image Size Reducer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h2>📉 MB → KB Image Reducer</h2>
+  <input type="file" id="file" accept="image/*"><br>
+  <img id="preview">
+  <label>Quality: <span id="qVal">0.8</span></label><br>
+  <input type="range" id="quality" min="0.1" max="1" step="0.05" value="0.8">
+  <p id="sizeInfo"></p>
+  <button id="download">Download Reduced</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
