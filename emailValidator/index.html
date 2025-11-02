@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Validator (Realtime + Icon)</title>
+<style>
+  body {
+    font-family: Arial;
+    background:#0f172a;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+  }
+  .input-box {
+    position: relative;
+    width: 260px;
+  }
+  input {
+    width: 100%;
+    padding: 10px 35px 10px 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+  }
+  .icon {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+  <h2>Email Validator ✅</h2>
+  <div class="input-box">
+    <input type="text" id="email" placeholder="Enter your email...">
+    <span class="icon" id="icon"></span>
+  </div>
+
+<script>
+const email = document.getElementById("email");
+const icon = document.getElementById("icon");
+const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+email.addEventListener("input", () => {
+  const val = email.value.trim();
+  if (val === "") {
+    icon.textContent = "";
+  } else if (pattern.test(val)) {
+    icon.textContent = "✔️";
+    icon.style.color = "lime";
+  } else {
+    icon.textContent = "❌";
+    icon.style.color = "red";
+  }
+});
+</script>
+</body>
+</html>
