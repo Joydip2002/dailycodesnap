@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sorting Visualizer — Bubble & Insertion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Sorting Visualizer — Bubble & Insertion</h1>
+      <div class="controls" id="controls">
+        <div>
+          <label for="algorithm" style="font-size:13px;color:var(--muted);">Algorithm</label><br>
+          <select id="algorithm">
+            <option value="bubble">Bubble Sort</option>
+            <option value="insertion">Insertion Sort</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size:13px;color:var(--muted);">Size</label><br>
+          <input id="size" type="range" min="8" max="120" value="30" />
+        </div>
+
+        <div>
+          <label style="font-size:13px;color:var(--muted);">Speed</label><br>
+          <input id="speed" type="range" min="5" max="400" value="80" />
+        </div>
+
+        <div>
+          <button id="btn-generate" class="primary">Generate</button>
+          <button id="btn-play">Play</button>
+          <button id="btn-pause" disabled>Pause</button>
+          <button id="btn-step">Step</button>
+          <button id="btn-reset">Reset</button>
+        </div>
+
+        <div style="padding-left:8px">
+          <div class="status">Comparisons: <span id="count-compare">0</span> | Swaps: <span id="count-swap">0</span></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="panel">
+      <div class="bars" id="bars"></div>
+      <div class="legend">
+        <span><i class="swatch compare"></i>Compare</span>
+        <span><i class="swatch swap"></i>Swap</span>
+        <span><i class="swatch sorted"></i>Sorted</span>
+      </div>
+    </div>
+
+    <footer>
+      <div style="font-size:13px">Tip: increase speed (smaller ms) & reduce size for faster animation.</div>
+      <div style="font-size:13px">Made with plain HTML/CSS/JS</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

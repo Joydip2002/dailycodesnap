@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programming Case Converter</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+  textarea {
+    width: 90%;
+    max-width: 500px;
+    height: 150px;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+  }
+  button {
+    margin: 5px;
+    padding: 8px 15px;
+    background: #38bdf8;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button:hover { background: #0ea5e9; }
+</style>
+</head>
+<body>
+
+<h2>Programming Case Converter</h2>
+<textarea id="text" placeholder="Type or paste text here..."></textarea><br>
+
+<div>
+  <button onclick="convertCase('camel')">camelCase</button>
+  <button onclick="convertCase('pascal')">PascalCase</button>
+  <button onclick="convertCase('snake')">snake_case</button>
+  <button onclick="convertCase('kebab')">kebab-case</button>
+  <button onclick="convertCase('screaming')">SCREAMING_SNAKE_CASE</button>
+</div>
+
+<script>
+function convertCase(type) {
+  const textArea = document.getElementById("text");
+  const words = textArea.value
+    .trim()
+    .split(/[\s_\-]+/)
+    .filter(Boolean)
+    .map(w => w.toLowerCase());
+
+  if (words.length === 0) return;
+
+  let result = "";
+
+  switch (type) {
+    case "camel":
+      result = words[0] + words.slice(1).map(cap).join("");
+      break;
+    case "pascal":
+      result = words.map(cap).join("");
+      break;
+    case "snake":
+      result = words.join("_");
+      break;
+    case "kebab":
+      result = words.join("-");
+      break;
+    case "screaming":
+      result = words.join("_").toUpperCase();
+      break;
+  }
+
+  textArea.value = result;
+}
+
+function cap(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+</script>
+
+</body>
+</html>

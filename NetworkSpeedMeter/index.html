@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Speed Meter</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at center, #0f172a, #020617);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #e2e8f0;
+    }
+
+    .meter {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px 50px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      text-align: center;
+      min-width: 300px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .title {
+      font-size: 20px;
+      color: #38bdf8;
+      font-weight: 600;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .speed {
+      font-size: 50px;
+      font-weight: 700;
+      color: #10b981;
+      margin: 10px 0;
+    }
+
+    .unit {
+      font-size: 18px;
+      color: #94a3b8;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #38bdf8;
+      border: none;
+      color: #0f172a;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+
+    .status {
+      margin-top: 10px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 10px solid rgba(255,255,255,0.1);
+      margin: 20px auto;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .circle::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border-top: 10px solid #38bdf8;
+      transform: rotate(0deg);
+      animation: spin 2s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="meter">
+    <div class="title">Network Speed Meter</div>
+    <div class="circle">
+      <div class="speed" id="speed">0</div>
+    </div>
+    <div class="unit">Mbps</div>
+    <button id="testBtn">Test Speed</button>
+    <div class="status" id="status">Click “Test Speed” to begin</div>
+  </div>
+
+  <script>
+    const speedEl = document.getElementById('speed');
+    const statusEl = document.getElementById('status');
+    const testBtn = document.getElementById('testBtn');
+
+    async function testSpeed() {
+      const imageUrl = "https://speed.cloudflare.com/__down?bytes=5000000"; // 5MB
+      const startTime = new Date().getTime();
+
+      statusEl.textContent = "Testing... Please wait ⏳";
+      speedEl.textContent = "…";
+
+      try {
+        const response = await fetch(imageUrl + "?cache=" + Math.random());
+        const reader = response.body.getReader();
+        let bytesReceived = 0;
+        let done = false;
+
+        while (!done) {
+          const { value, done: readerDone } = await reader.read();
+          if (value) bytesReceived += value.length;
+          done = readerDone;
+        }
+
+        const endTime = new Date().getTime();
+        const duration = (endTime - startTime) / 1000;
+        const bitsLoaded = bytesReceived * 8;
+        const speedMbps = (bitsLoaded / (duration * 1024 * 1024)).toFixed(2);
+
+        speedEl.textContent = speedMbps;
+        statusEl.textContent = `Completed in ${duration.toFixed(1)}s`;
+      } catch (error) {
+        speedEl.textContent = "0";
+        statusEl.textContent = "Error: Unable to fetch test file";
+      }
+    }
+
+    testBtn.addEventListener('click', testSpeed);
+  </script>
+
+</body>
+</html>
