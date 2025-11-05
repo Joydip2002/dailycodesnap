@@ -1,0 +1,11 @@
+<input id="usPhone" placeholder="(123) 456-7890" maxlength="14">
+
+<script>
+const input = document.getElementById("usPhone");
+input.addEventListener("input", e => {
+  let v = e.target.value.replace(/\D/g,"").slice(0,10);
+  if(v.length > 6) e.target.value = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
+  else if(v.length > 3) e.target.value = `(${v.slice(0,3)}) ${v.slice(3)}`;
+  else if(v.length > 0) e.target.value = `(${v}`;
+});
+</script>

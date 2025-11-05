@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #111;
+        color: #fff;
+        flex-direction: column;
+      }
+      input,
+      button {
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        font-size: 15px;
+      }
+      input {
+        width: 260px;
+        margin-bottom: 10px;
+      }
+      button {
+        background: #00ffcc;
+        cursor: pointer;
+      }
+      a {
+        color: #00ffcc;
+        margin-top: 10px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="url" placeholder="Enter URL (https://)" />
+    <button onclick="shorten()">Shorten URL</button>
+    <a id="out" target="_blank"></a>
+
+    <script>
+      function shorten() {
+        let u = document.getElementById("url").value;
+        fetch(
+          `https://is.gd/create.php?format=simple&url=${encodeURIComponent(u)}`
+        )
+          .then((r) => r.text())
+          .then(
+            (s) =>
+              (document.getElementById("out").innerText =
+                document.getElementById("out").href =
+                  s)
+          );
+      }
+    </script>
+  </body>
+</html>

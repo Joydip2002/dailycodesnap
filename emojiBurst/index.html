@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body{margin:0;background:#111;overflow:hidden;cursor:pointer;}
+  canvas{display:block;}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<script>
+const c = document.getElementById("c"), ctx = c.getContext("2d");
+function resize(){c.width=innerWidth;c.height=innerHeight;} resize();
+addEventListener("resize",resize);
+
+const emojis=["🎉","✨","💥","🔥","😍","😂","🌟","🎈"];
+let parts=[];
+
+addEventListener("click",e=>{
+  for(let i=0;i<40;i++) parts.push({
+    x:e.clientX,y:e.clientY,
+    vx:Math.random()*6-3,vy:Math.random()*6-3,
+    txt:emojis[Math.random()*emojis.length|0],life:60
+  });
+});
+
+(function loop(){
+  ctx.fillStyle="rgba(0,0,0,.2)";
+  ctx.fillRect(0,0,c.width,c.height);
+
+  parts.forEach(p=>{
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.vy+=0.08;
+    p.life--;
+
+    ctx.globalAlpha=p.life/60;
+    ctx.font="28px sans-serif";
+    ctx.fillStyle="#fff";  // ✅ SHOW EMOJI CLEARLY
+    ctx.textAlign="center"; // ✅ CENTER TEXT
+    ctx.textBaseline="middle";
+    ctx.fillText(p.txt,p.x,p.y);
+  });
+
+  parts=parts.filter(p=>p.life>0);
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
