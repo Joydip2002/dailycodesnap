@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Poppins, Arial, sans-serif;
+    background: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.card {
+    width: 900px;
+    max-width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.left-side {
+    flex: 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 60px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.illustration {
+    text-align: center;
+    color: white;
+}
+
+.illustration svg {
+    width: 280px;
+    height: 280px;
+    margin-bottom: 20px;
+}
+
+.illustration h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.illustration p {
+    font-size: 14px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.right-side {
+    flex: 1;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+.otp {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.otp input {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.otp input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.verify-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 20px;
+}
+
+.verify-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.verify-btn:active {
+    transform: translateY(0);
+}
+
+.resend-text {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.resend-text a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.resend-text a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+    }
+    
+    .left-side {
+        padding: 40px 20px;
+    }
+    
+    .illustration svg {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .right-side {
+        padding: 40px 20px;
+    }
+    
+    .otp input {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}

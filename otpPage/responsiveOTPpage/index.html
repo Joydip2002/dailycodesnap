@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <div class="left-side">
+            <div class="illustration">
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.1)"/>
+                    <rect x="60" y="70" width="80" height="60" rx="8" fill="white" opacity="0.9"/>
+                    <rect x="70" y="85" width="15" height="20" rx="3" fill="#667eea"/>
+                    <rect x="92" y="85" width="15" height="20" rx="3" fill="#667eea"/>
+                    <rect x="115" y="85" width="15" height="20" rx="3" fill="#667eea"/>
+                    <circle cx="100" cy="45" r="15" fill="white" opacity="0.8"/>
+                    <path d="M100 35 L105 50 L95 50 Z" fill="#667eea"/>
+                </svg>
+                <h3>Secure Verification</h3>
+                <p>Enter the 4-digit code sent to your phone number</p>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <h2>Verify OTP</h2>
+            <p class="subtitle">Please enter the 4-digit code</p>
+
+            <div class="otp">
+                <input type="text" pattern="[0-9]" maxlength="1" inputmode="numeric">
+                <input type="text" pattern="[0-9]" maxlength="1" inputmode="numeric">
+                <input type="text" pattern="[0-9]" maxlength="1" inputmode="numeric">
+                <input type="text" pattern="[0-9]" maxlength="1" inputmode="numeric">
+            </div>
+
+            <button class="verify-btn">Verify Code</button>
+
+            <p class="resend-text">Didn't receive code? <a href="#" id="resendLink">Resend Code</a></p>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
