@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Task Board with Priority</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="heading">Task Management Board</div>
+    <div class="board">
+      <div class="column" id="doing">
+        <h3>Doing</h3>
+        <div class="task high" draggable="true" data-priority="HIGH">
+          Fix Payment Bug
+        </div>
+        <div class="task medium" draggable="true" data-priority="MED">
+          API Integration
+        </div>
+        <div class="task low" draggable="true" data-priority="LOW">
+          UI Cleanup
+        </div>
+      </div>
+
+      <div class="column" id="done">
+        <h3>Completed</h3>
+        <div class="task medium" draggable="true" data-priority="MED">
+          Login Page UI
+        </div>
+        <div class="task low" draggable="true" data-priority="LOW">
+          Remove Unused Icons
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

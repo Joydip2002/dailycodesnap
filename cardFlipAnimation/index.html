@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Credit Card UI</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- CARD -->
+      <div class="card-box">
+        <div class="card" id="card">
+          <div class="side front">
+            <div class="logo">VISA</div>
+            <div class="chip"></div>
+
+            <div>
+              <div id="dnum">#### #### #### ####</div>
+              <div id="dname">FULL NAME</div>
+              <div id="dexp">MM/YY</div>
+            </div>
+          </div>
+
+          <div class="side back">
+            <div class="stripe"></div>
+            <div class="cvv-box">CVV: <span id="dcvv">***</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="form">
+        <label>Card Number</label>
+        <input id="num" maxlength="19" placeholder="1234 5678 9012 3456" />
+
+        <label>Card Holder</label>
+        <input id="name" placeholder="JOHN DOE" />
+
+        <label>Expiry</label>
+        <input id="exp" maxlength="5" placeholder="MM/YY" />
+
+        <label>CVV</label>
+        <input id="cvv" maxlength="3" placeholder="123" />
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
