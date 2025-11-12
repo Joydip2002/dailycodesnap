@@ -21,6 +21,8 @@ body {
 .board {
     display: flex;
     gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .column {
@@ -32,6 +34,7 @@ body {
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
 }
 
 .column h3 {
@@ -53,6 +56,11 @@ body {
     cursor: grab;
     transition: transform 0.2s, background 0.2s;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    resize: both;
+    overflow: auto;
+    min-height: 40px;
+    min-width: 100px;
+    max-width: 100%;
 }
 
 /* PRIORITY BADGES */

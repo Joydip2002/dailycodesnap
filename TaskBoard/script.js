@@ -23,26 +23,3 @@ columns.forEach((col) => {
     );
     col.addEventListener("drop", () => col.classList.remove("highlight"));
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
