@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Phone + Flag (from API)</title>
+<style>
+  body{font-family:Inter,system-ui,Arial;background:#0b1220;color:#e6eef8;padding:18px;display:flex;align-items:center;justify-content:center;height:100vh}
+  .card{width:100%;max-width:420px;background:#0f172a;padding:14px;border-radius:12px}
+  .row{display:flex;gap:8px;align-items:center}
+  select{flex:0 0 40%;padding:10px;border-radius:8px;border:1px solid #1f2937;background:transparent;color:inherit}
+  input{flex:1;padding:10px;border-radius:8px;border:1px solid #1f2937;background:transparent;color:inherit}
+  .preview{margin-top:12px;display:flex;gap:10px;align-items:center}
+  .flag{width:36px;height:24px;object-fit:cover;border-radius:4px;background:#071023}
+  .muted{color:#9aa4b2;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="row">
+      <select id="countrySelect"><option>Loading...</option></select>
+      <input id="phone" type="tel" placeholder="Enter mobile number" inputmode="tel"/>
+    </div>
+
+    <div class="preview">
+      <img id="flagImg" class="flag" alt="flag"/>
+      <div id="display" style="font-weight:600">+ —</div>
+    </div>
+
+    <div class="muted">Flags & dial codes loaded from REST Countries API.</div>
+  </div>
+
+<script>
+(async function(){
+  const sel = document.getElementById('countrySelect');
+  const flagImg = document.getElementById('flagImg');
+  const display = document.getElementById('display');
+  const phone = document.getElementById('phone');
+
+  // fetch countries from REST Countries API
+  const res = await fetch('https://restcountries.com/v3.1/all');
+  const countries = await res.json();
+
+  // build list of countries that have IDD info
+  const list = countries
+    .map(c => {
+      const idd = c.idd || {};
+      const root = idd.root || '';
+      const suffixes = idd.suffixes || [];
+      // pick first suffix (if any) else empty
+      const suffix = suffixes.length ? suffixes[0] : '';
+      const code = root ? (root + suffix) : '';
+      return {
+        name: c.name?.common || c.name || 'Unknown',
+        code: code,               // e.g. +91 or ""
+        flag: c.flags?.svg || c.flags?.png || '',
+        cca2: c.cca2 || ''
+      };
+    })
+    .filter(c => c.code) // only countries with dial code
+    .sort((a,b) => a.name.localeCompare(b.name));
+
+  // populate select
+  sel.innerHTML = list.map(c => `<option value="${c.code}" data-flag="${encodeURIComponent(c.flag)}">${c.name} ${c.code}</option>`).join('');
+
+  // update preview
+  function updatePreview(){
+    const opt = sel.options[sel.selectedIndex];
+    const code = opt.value;
+    const flag = decodeURIComponent(opt.dataset.flag);
+    flagImg.src = flag;
+    const raw = phone.value.replace(/[^\d]/g,'').replace(/^0+/,'');
+    display.textContent = raw ? `${code} ${raw.replace(/(\d{3})(?=\d)/g,'$1 ')}` : code + ' —';
+  }
+
+  // events
+  sel.addEventListener('change', updatePreview);
+  phone.addEventListener('input', updatePreview);
+
+  // initial
+  sel.selectedIndex = list.findIndex(c=>c.code.includes('+91')) || 0; // prefer +91 if present
+  updatePreview();
+})();
+</script>
+</body>
+</html>

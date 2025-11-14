@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Task Board with Mini Map</title>
+    <style>
+      body {
+        margin: 0;
+        background: linear-gradient(135deg, #4e54c8, #8f94fb);
+        font-family: Poppins, sans-serif;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .heading {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .board {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-height: 80vh;
+        overflow: auto;
+        padding: 20px;
+        scroll-behavior: smooth;
+      }
+
+      .column {
+        width: 260px;
+        min-height: 340px;
+        padding: 18px;
+        border-radius: 16px;
+        backdrop-filter: blur(14px);
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      }
+
+      .column h3 {
+        margin: 0 0 15px;
+        font-weight: 500;
+        letter-spacing: 1px;
+      }
+
+      .task {
+        padding: 14px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        cursor: grab;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        resize: both;
+        overflow: auto;
+      }
+
+      .task::before {
+        content: attr(data-priority);
+        font-size: 11px;
+        padding: 2px 6px;
+        border-radius: 6px;
+        margin-right: 8px;
+        color: #fff;
+      }
+
+      .low {
+        background: rgba(0, 255, 120, 0.25);
+      }
+      .low::before {
+        background: #00c26a;
+      }
+      .medium {
+        background: rgba(255, 165, 0, 0.3);
+      }
+      .medium::before {
+        background: #ff9500;
+      }
+      .high {
+        background: rgba(255, 60, 60, 0.3);
+      }
+      .high::before {
+        background: #ff3b3b;
+      }
+
+      .task.dragging {
+        opacity: 0.4;
+      }
+
+      /* Mini Map */
+      #minimap {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        width: 160px;
+        height: 100px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 100;
+      }
+
+      .minimap-label {
+        position: fixed;
+        bottom: 120px;
+        right: 25px;
+        font-size: 13px;
+        color: #eee;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="heading">Task Management Board</div>
+    <div class="board" id="board">
+      <div class="column" id="doing">
+        <h3>Doing</h3>
+        <div class="task high" draggable="true" data-priority="HIGH">
+          Fix Payment Bug
+        </div>
+        <div class="task medium" draggable="true" data-priority="MED">
+          API Integration
+        </div>
+        <div class="task low" draggable="true" data-priority="LOW">
+          UI Cleanup
+        </div>
+      </div>
+
+      <div class="column" id="done">
+        <h3>Completed</h3>
+        <div class="task medium" draggable="true" data-priority="MED">
+          Login Page UI
+        </div>
+        <div class="task low" draggable="true" data-priority="LOW">
+          Remove Unused Icons
+        </div>
+      </div>
+    </div>
+
+    <div class="minimap-label">🗺 Mini Map</div>
+    <canvas id="minimap"></canvas>
+
+    <script>
+      const tasks = document.querySelectorAll(".task");
+      const columns = document.querySelectorAll(".column");
+      const board = document.getElementById("board");
+      const minimap = document.getElementById("minimap");
+      const ctx = minimap.getContext("2d");
+
+      // Drag events
+      tasks.forEach((task) => {
+        task.addEventListener("dragstart", () =>
+          task.classList.add("dragging")
+        );
+        task.addEventListener("dragend", () => {
+          task.classList.remove("dragging");
+          drawMiniMap();
+        });
+      });
+
+      columns.forEach((col) => {
+        col.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          const dragging = document.querySelector(".task.dragging");
+          col.appendChild(dragging);
+        });
+        col.addEventListener("drop", () => drawMiniMap());
+      });
+
+      // Mini Map Drawer
+      function drawMiniMap() {
+        const rect = board.getBoundingClientRect();
+        const scaleX = minimap.width / rect.width;
+        const scaleY = minimap.height / rect.height;
+
+        ctx.clearRect(0, 0, minimap.width, minimap.height);
+
+        const cols = document.querySelectorAll(".column");
+        cols.forEach((col, index) => {
+          const colRect = col.getBoundingClientRect();
+          const x = (colRect.left - rect.left) * scaleX;
+          const y = (colRect.top - rect.top) * scaleY;
+          const w = colRect.width * scaleX;
+          const h = colRect.height * scaleY;
+
+          // Draw column
+          ctx.fillStyle = "rgba(255,255,255,0.2)";
+          ctx.fillRect(x, y, w, h);
+
+          // Draw tasks
+          const tasks = col.querySelectorAll(".task");
+          tasks.forEach((task) => {
+            const tRect = task.getBoundingClientRect();
+            const tx = (tRect.left - rect.left) * scaleX;
+            const ty = (tRect.top - rect.top) * scaleY;
+            const tw = tRect.width * scaleX;
+            const th = tRect.height * scaleY;
+            ctx.fillStyle = "rgba(255,255,255,0.6)";
+            ctx.fillRect(tx, ty, tw, th);
+          });
+        });
+      }
+
+      // Redraw periodically (in case of scroll/resize)
+      drawMiniMap();
+      window.addEventListener("resize", drawMiniMap);
+      setInterval(drawMiniMap, 1000);
+    </script>
+  </body>
+</html>
