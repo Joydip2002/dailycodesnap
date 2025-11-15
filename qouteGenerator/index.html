@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AI Quote Generator</title>
+<style>
+  body{
+    margin:0;
+    font-family:Poppins, sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    color:#fff;
+  }
+
+  .card{
+    width:350px;
+    padding:25px 20px;
+    text-align:center;
+    border-radius:20px;
+    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,0.1);
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+    border:1px solid rgba(255,255,255,0.2);
+    transition:opacity .6s ease, transform .4s ease;
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  .card.show{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .author{
+    margin-top:15px;
+    font-size:15px;
+    opacity:0.8;
+  }
+
+  button{
+    margin-top:25px;
+    padding:12px 25px;
+    border:none;
+    cursor:pointer;
+    border-radius:30px;
+    background:#fff;
+    color:#1e3c72;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+  }
+
+  button:hover{
+    transform:scale(1.05);
+    box-shadow:0 5px 15px rgba(255,255,255,0.3);
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="quoteCard">Click “Generate Quote”</div>
+
+<button onclick="getQuote()">Generate Quote</button>
+
+<script>
+  async function getQuote(){
+    const card = document.getElementById("quoteCard");
+
+    card.classList.remove("show"); // fade out
+
+    try{
+      const res = await fetch("https://api.quotable.io/random");
+      const data = await res.json();
+
+      const quote = data.content;
+      const author = data.author;
+
+      setTimeout(()=>{
+        card.innerHTML = `"${quote}" <br><div class='author'>— ${author}</div>`;
+        card.classList.add("show"); // fade in
+      },300);
+
+    } catch(e){
+      card.innerHTML = "⚠️ Unable to fetch quote. Try again.";
+      card.classList.add("show");
+    }
+  }
+</script>
+
+</body>
+</html>
